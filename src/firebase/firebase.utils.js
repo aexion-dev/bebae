@@ -12,6 +12,31 @@ const config = {
   appId: process.env.REACT_APP_FB_APP_ID
 }
 
+export const createUserProfile = async (userAuth, additionalData) => {
+  if(!userAuth) return;
+
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapShot = await userRef.get();
+
+  if(!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const joined = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        joined,
+        ...additionalData
+      })
+    } catch(error) {
+      console.log('error creating user', error.message);
+    }
+  }
+  
+  return userRef;
+}
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
