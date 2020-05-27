@@ -33,10 +33,11 @@ export const createUserProfile = async (userAuth, additionalData) => {
       console.log('error creating user', error.message);
     }
   }
-  
+
   return userRef;
 }
 
+console.log('FBKEY:', config.apiKey)
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
