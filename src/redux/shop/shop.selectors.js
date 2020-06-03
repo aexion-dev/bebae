@@ -32,3 +32,8 @@ export const selectProductsFromCollection = (collectionId) => createSelector(
     ? Object.keys(products).map(key => products[key]).filter(product => product.collection === collectionId)
     : null
 )
+
+export const selectIsCollectionsFetching = createSelector(
+  [selectShop],
+  shop => shop.isFetching
+)

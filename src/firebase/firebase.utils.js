@@ -74,23 +74,23 @@ export const getProductsFromSnapshot = (productsSnapshot) => {
   }, {})
 }
 
-export const convertCollectionsSnapshotToMap = (collectionsSnapshot) => {
-  const transformedCollection = collectionsSnapshot.docs.map(doc => {
-    const { name, items } = doc.data();
-
-    return {
-      routeName: encodeURI(name.toLowerCase()),
-      id: doc.id,
-      name,
-      items
-    }
-  });
-
-  return transformedCollection.reduce((accumulator, collection) => {
-    accumulator[collection.name.toLowerCase()] = collection;
-    return accumulator;
-  }, {})
-}
+// export const convertCollectionsSnapshotToMap = (collectionsSnapshot) => {
+//   const transformedCollection = collectionsSnapshot.docs.map(doc => {
+//     const { name, items } = doc.data();
+//
+//     return {
+//       routeName: encodeURI(name.toLowerCase()),
+//       id: doc.id,
+//       name,
+//       items
+//     }
+//   });
+//
+//   return transformedCollection.reduce((accumulator, collection) => {
+//     accumulator[collection.name.toLowerCase()] = collection;
+//     return accumulator;
+//   }, {})
+// }
 
 export const addCollection = async (collection) => {
   const collectionRef = firestore.collection('categories').doc();
@@ -112,18 +112,18 @@ export const addProduct = async (product) => {
   }
 }
 
-export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
-  const collectionRef = firestore.collection(collectionKey);
-  console.log('TEST', collectionRef);
-
-  const batch = firestore.batch();
-  objectsToAdd.forEach(obj => {
-    const newDocRef = collectionRef.doc();
-    batch.set(newDocRef, obj);
-  });
-
-  return await batch.commit();
-}
+// export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+//   const collectionRef = firestore.collection(collectionKey);
+//   console.log('TEST', collectionRef);
+//
+//   const batch = firestore.batch();
+//   objectsToAdd.forEach(obj => {
+//     const newDocRef = collectionRef.doc();
+//     batch.set(newDocRef, obj);
+//   });
+//
+//   return await batch.commit();
+// }
 
 firebase.initializeApp(config);
 
