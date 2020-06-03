@@ -10,6 +10,8 @@ import SignInPage from './pages/signin_page';
 import HomePage from './pages/home_page';
 import ShopPage from './pages/shop_page';
 import CheckoutPage from './pages/checkout_page';
+import AddCollectionPage from './pages/admin/addcollection_page';
+import AddProductPage from './pages/admin/addproduct_page';
 import './App.css';
 
 class App extends React.Component {
@@ -50,6 +52,8 @@ class App extends React.Component {
           <Route exact path='/signin' render={
             () => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInPage />)
           }/>
+          <Route exact path='/add-collection' component={AddCollectionPage}/>
+          <Route exact path='/add-product' component={AddProductPage}/>
         </Switch>
       </div>
     );

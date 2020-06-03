@@ -37,22 +37,79 @@ export const createUserProfile = async (userAuth, additionalData) => {
   return userRef;
 }
 
-export const convertCollectionsSnapshotToMap = (collectionsSnapshot) => {
+export const getCollectionsFromSnapshot = (collectionsSnapshot) => {
   const transformedCollection = collectionsSnapshot.docs.map(doc => {
-    const { title, items } = doc.data();
+    const { name, imageUrl, slug, id } = doc.data();
 
     return {
-      routeName: encodeURI(title.toLowerCase()),
+      name,
+      id,
+      imageUrl,
+      routeName: encodeURI(slug.toLowerCase())
+    }
+  });
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.name.toLowerCase()] = collection;
+    return accumulator;
+  }, {})
+}
+
+export const getProductsFromSnapshot = (productsSnapshot) => {
+  const transformedProducts = productsSnapshot.docs.map(doc => {
+    const { name, price, imageUrl, collection, slug } = doc.data();
+
+    return {
+      name,
+      price,
+      imageUrl,
+      collection,
+      routeName: encodeURI(slug.toLowerCase())
+    }
+  });
+
+  return transformedProducts.reduce((accumulator, product) => {
+    accumulator[product.name.toLowerCase()] = product;
+    return accumulator;
+  }, {})
+}
+
+export const convertCollectionsSnapshotToMap = (collectionsSnapshot) => {
+  const transformedCollection = collectionsSnapshot.docs.map(doc => {
+    const { name, items } = doc.data();
+
+    return {
+      routeName: encodeURI(name.toLowerCase()),
       id: doc.id,
-      title,
+      name,
       items
     }
   });
 
   return transformedCollection.reduce((accumulator, collection) => {
-    accumulator[collection.title.toLowerCase()] = collection;
+    accumulator[collection.name.toLowerCase()] = collection;
     return accumulator;
   }, {})
+}
+
+export const addCollection = async (collection) => {
+  const collectionRef = firestore.collection('categories').doc();
+
+  try {
+    await collectionRef.set({id: collectionRef.id, ...collection});
+  } catch(error) {
+    console.log('error creating collection', error.message);
+  }
+}
+
+export const addProduct = async (product) => {
+  const productRef = firestore.collection('products').doc();
+
+  try {
+    await productRef.set({id: productRef.id, ...product});
+  } catch(error) {
+    console.log('error creating product', error.message);
+  }
 }
 
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
