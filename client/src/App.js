@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
+
 import Header from './components/header/header';
 import SignInPage from './pages/signin_page';
 import HomePage from './pages/home_page';
@@ -11,7 +12,8 @@ import ShopPage from './pages/shop_page';
 import CheckoutPage from './pages/checkout_page';
 import AddCollectionPage from './pages/admin/addcollection_page';
 import AddProductPage from './pages/admin/addproduct_page';
-import './App.css';
+
+import { GlobalStyle } from './global.styles';
 
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
@@ -20,6 +22,7 @@ const App = ({ checkUserSession, currentUser }) => {
 
   return (
     <div>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage}/>
