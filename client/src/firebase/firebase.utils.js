@@ -66,10 +66,11 @@ export const getCollectionsFromSnapshot = (collectionsSnapshot) => {
 
 export const getProductsFromSnapshot = (productsSnapshot) => {
   const transformedProducts = productsSnapshot.docs.map(doc => {
-    const { name, price, imageUrl, collection, slug } = doc.data();
+    const { name, id, price, imageUrl, collection, slug } = doc.data();
 
     return {
       name,
+      id,
       price,
       imageUrl,
       collection,
