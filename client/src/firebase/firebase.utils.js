@@ -37,6 +37,29 @@ export const createUserProfile = async (userAuth, additionalData) => {
   return userRef;
 }
 
+export const getGuestCartRef = async (cartId) => {
+  const guestCart = firestore.doc(`carts/${cartId}`);
+  const snapShot = await guestCart.get();
+
+  if(!snapShot.exists) {
+    const newCart = firestore.collection('carts').doc();
+    const created = new Date();
+
+    try {
+      await newCart.set({
+        userId: null,
+        created,
+        cartItems: []
+      });
+      return newCart;
+    } catch(error) {
+      console.log('error creating guest cart', error.message);
+    }
+  } else {
+    return guestCart;
+  }
+}
+
 export const getUserCartRef = async (userId) => {
   const userCart = firestore.collection('carts').where('userId', '==', userId);
   const snapShot = await userCart.get();
