@@ -37,6 +37,29 @@ export const createUserProfile = async (userAuth, additionalData) => {
   return userRef;
 }
 
+export const getUserCartRef = async (userId) => {
+  const userCart = firestore.collection('carts').where('userId', '==', userId);
+  const snapShot = await userCart.get();
+
+  if(snapShot.empty) {
+    const newCart = firestore.collection('carts').doc();
+    const created = new Date();
+
+    try {
+      await newCart.set({
+        userId,
+        created,
+        cartItems: []
+      });
+      return newCart;
+    } catch(error) {
+      console.log('error creating user cart', error.message);
+    }
+  } else {
+    return snapShot.docs[0].ref;
+  }
+}
+
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
