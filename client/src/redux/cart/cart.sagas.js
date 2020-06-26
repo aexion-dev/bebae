@@ -1,8 +1,8 @@
 import { takeLatest, all, call, put, select } from 'redux-saga/effects';
-import { getUserCartRef, getGuestCartRef } from '../../firebase/firebase.utils';
+import { getUserCartRef, getGuestCartRef, updateCartInFirebase } from '../../firebase/firebase.utils';
 import { selectCurrentUser } from '../user/user.selectors';
 import { clearCart, setCart } from './cart.actions';
-import { selectCartItems, selectCartId } from './cart.selectors';
+import { selectCartId, selectCart } from './cart.selectors';
 import CartActionTypes from './cart.types';
 import UserActionTypes from '../user/user.types';
 
@@ -10,22 +10,22 @@ export function* clearCartOnSignOut() {
   yield put(clearCart());
 }
 
-export function* updateCartInFirebase() {
-  let cartRef = null;
+export function* updateCart() {
   const currentUser = yield select(selectCurrentUser);
-  const cartId = yield select(selectCartId);
+  const cart = yield select(selectCart);
+  let newCartId = null;
 
   if (currentUser) {
-    cartRef = yield getUserCartRef(currentUser.id);
+    newCartId = yield updateCartInFirebase(cart, currentUser.id);
   } else {
-    cartRef = yield getGuestCartRef(cartId);
+    newCartId = yield updateCartInFirebase(cart, null);
   }
 
-  try {
-    const cartItems = yield select(selectCartItems);
-    yield cartRef.update({ cartItems });
-  } catch(error) {
-    console.log('error saving shopping cart', error.message);
+  if(!cart.cartId) {
+    yield put(setCart({
+      cartId: newCartId,
+      cartItems: cart.cartItems
+    }));
   }
 }
 
@@ -40,18 +40,16 @@ export function* getCartFromFirebase() {
     cartRef = yield getGuestCartRef(cartId);
   }
 
-  const snapShot = yield cartRef.get();
-  yield put(setCart({
-    cartId: snapShot.id,
-    cartItems: snapShot.data().cartItems
-  }));
+  if(cartRef) {
+    const snapShot = yield cartRef.get();
+    yield put(setCart({
+      cartId: snapShot.id,
+      cartItems: snapShot.data().cartItems
+    }));
+  } else {
+    console.log('Cart Not Found!');
+  }
 }
-
-// export function* getCartFromFirebase({ payload: user }) {
-//   const cartRef = yield getUserCartRef(user.id);
-//   const snapShot = yield cartRef.get();
-//   yield put(setCart(snapShot.data().cartItems));
-// }
 
 export function* onSignOutSuccess() {
   yield takeLatest(UserActionTypes.SIGN_OUT_SUCCESS, clearCartOnSignOut);
@@ -74,7 +72,7 @@ export function* onCartChange() {
       CartActionTypes.REMOVE_ITEM,
       CartActionTypes.CLEAR_ITEM_FROM_CART
     ],
-    updateCartInFirebase
+    updateCart
   );
 }
 

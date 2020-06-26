@@ -41,45 +41,48 @@ export const getGuestCartRef = async (cartId) => {
   const guestCart = firestore.doc(`carts/${cartId}`);
   const snapShot = await guestCart.get();
 
-  if(!snapShot.exists) {
-    const newCart = firestore.collection('carts').doc();
-    const created = new Date();
-
-    try {
-      await newCart.set({
-        userId: null,
-        created,
-        cartItems: []
-      });
-      return newCart;
-    } catch(error) {
-      console.log('error creating guest cart', error.message);
-    }
-  } else {
+  if(snapShot.exists) {
     return guestCart;
+  } else {
+    return null;
   }
 }
 
 export const getUserCartRef = async (userId) => {
   const userCart = firestore.collection('carts').where('userId', '==', userId);
   const snapShot = await userCart.get();
+  if(!snapShot.empty) {
+    return snapShot.docs[0].ref;
+  } else {
+    return null;
+  }
+}
 
-  if(snapShot.empty) {
+export const updateCartInFirebase = async (cart, userId) => {
+  const { cartId, cartItems } = cart;
+  const userCart = firestore.doc(`carts/${cartId}`);
+  const snapShot = await userCart.get();
+
+  if(!snapShot.exists) {
     const newCart = firestore.collection('carts').doc();
     const created = new Date();
-
     try {
       await newCart.set({
         userId,
         created,
-        cartItems: []
-      });
-      return newCart;
+        cartItems
+      })
+      return newCart.id;
     } catch(error) {
-      console.log('error creating user cart', error.message);
+      console.log('error creating cart in database', error.message)
     }
   } else {
-    return snapShot.docs[0].ref;
+    try {
+      userCart.update({ cartItems, userId });
+      return cartId;
+    } catch(error) {
+      console.log('error updating cart in database', error.message);
+    }
   }
 }
 

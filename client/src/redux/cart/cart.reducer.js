@@ -34,6 +34,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case CartActionTypes.CLEAR_CART:
       return {
         ...state,
+        cartId: null,
         cartItems: []
       }
     case CartActionTypes.SET_CART:
