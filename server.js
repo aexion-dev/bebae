@@ -53,3 +53,26 @@ app.post('/payment', (req, res) => {
     }
   })
 });
+
+//Get Stripe Checkout Session by ID
+app.get('/checkout-session', async (req, res) => {
+  const { sessionId } = req.query;
+  const session = await stripe.checkout.sessions.retrieve(sessionId);
+  res.send(session);
+})
+
+//Create Stripe Checkout Session
+app.post('/create-checkout-session', async (req, res) => {
+  console.log(req.body.items);
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: req.body.items,
+    mode: 'payment',
+    success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'https://example.com/cancel',
+  });
+
+  res.send({
+    sessionId: session.id
+  });
+});
