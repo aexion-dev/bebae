@@ -64,7 +64,8 @@ export function* signInWithGoogle() {
 export function* isUserAuthenticated() {
   try {
     const userAuth = yield getCurrentUser();
-    if(!userAuth) return;
+    if(!userAuth)
+      return yield put(signInFailure('User not found'));
     yield getSnapshotFromUserAuth(userAuth);
   } catch(error) {
     yield put(signInFailure(error));
