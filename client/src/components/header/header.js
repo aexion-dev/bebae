@@ -11,7 +11,7 @@ import {
   HeaderContainer,
   LogoContainer,
   NavContainer,
-  NavLink
+  StyledNavLink
 } from './header.styles';
 
 import { ReactComponent as Logo } from '../../assets/logo.svg';
@@ -22,20 +22,23 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
       <Logo className='logo' />
     </LogoContainer>
     <NavContainer>
-      <NavLink to='/shop'>
+      <StyledNavLink to='/shop'>
         SHOP
-      </NavLink>
-      <NavLink to='/shop'>
+      </StyledNavLink>
+      <StyledNavLink to='/lookbook'>
         LOOKBOOK
-      </NavLink>
-      <NavLink to='/shop'>
+      </StyledNavLink>
+      <StyledNavLink to='/news'>
+        NEWS
+      </StyledNavLink>
+      <StyledNavLink to='/contact'>
         CONTACT
-      </NavLink>
+      </StyledNavLink>
       {
         currentUser ?
-        <NavLink as='div' onClick={signOutStart}>SIGN OUT</NavLink>
+        <StyledNavLink as='div' onClick={signOutStart}>SIGN OUT</StyledNavLink>
         :
-        <NavLink to='/signin'>SIGN IN</NavLink>
+        <StyledNavLink to='/signin'>SIGN IN</StyledNavLink>
       }
       <CartIcon />
     </NavContainer>

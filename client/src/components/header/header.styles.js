@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 export const HeaderContainer = styled.div`
   height: 70px;
@@ -38,11 +38,15 @@ export const NavContainer = styled.div`
   }
 `;
 
-export const NavLink = styled(Link)`
+export const StyledNavLink = styled(NavLink)`
   font-size: 18px;
   font-family: Engravers Gothic;
   font-weight: bold;
   letter-spacing: 1px;
   padding: 25px 15px;
   cursor: pointer;
+
+  &.active {
+    color: #a22d2d;
+  }
 `;
