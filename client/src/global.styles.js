@@ -1,6 +1,25 @@
 import { createGlobalStyle } from 'styled-components';
 
+import EngraversGothicBT from './assets/fonts/EngraversGothicBT.otf';
+import EngraversGothicBold from './assets/fonts/EngraversGothicBold.otf';
+
 export const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Engravers Gothic';
+    font-style: normal;
+    font-weight: normal;
+    src:
+      url('${EngraversGothicBT}') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Engravers Gothic';
+    font-style: normal;
+    font-weight: bold;
+    src:
+      url('${EngraversGothicBold}') format('opentype');
+  }
+
   * {
     box-sizing: border-box;
   }
