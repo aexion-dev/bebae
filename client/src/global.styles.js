@@ -25,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    padding: 20px 35px;
+    padding: 20px 75px;
 
     @media screen and (max-width: 800px) {
       padding: 10px;

@@ -8,7 +8,6 @@ import {
   ShoppingIcon,
   CartIconCount
 } from './cart-icon.styles';
-//import './cart-icon.scss';
 
 const CartIcon = ({ toggleCartHidden, itemCount }) => (
   <CartIconContainer onClick={toggleCartHidden}>

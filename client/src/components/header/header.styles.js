@@ -17,8 +17,8 @@ export const HeaderContainer = styled.div`
 
 export const LogoContainer = styled(Link)`
   height: 100%;
-  width: 120px;
-  padding: 25px;
+  width: 110px;
+  padding: 20px 0px;
 
   @media screen and (max-width:800px) {
     width: 50px;
@@ -39,8 +39,10 @@ export const NavContainer = styled.div`
 `;
 
 export const NavLink = styled(Link)`
-  padding: 10px 15px;
-  cursor: pointer;
+  font-size: 18px;
   font-family: Engravers Gothic;
   font-weight: bold;
+  letter-spacing: 1px;
+  padding: 25px 15px;
+  cursor: pointer;
 `;
