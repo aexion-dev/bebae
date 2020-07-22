@@ -38,22 +38,6 @@ app.get('/service-worker.js', (req, res) => {
   res.sendFile(path.resolve(__dirnam, '..', 'build', 'service-worker.js'));
 });
 
-app.post('/payment', (req, res) => {
-  const body = {
-    source: req.body.token.id,
-    amount: req.body.amount,
-    currency: 'usd'
-  };
-
-  stripe.charges.create(body, (stripeError, stripeRes) => {
-    if(stripeError) {
-      res.status(500).send({ error: stripeError });
-    } else {
-      res.status(200).send({ success: stripeRes });
-    }
-  })
-});
-
 //Get Stripe Checkout Session by ID
 app.get('/checkout-session', async (req, res) => {
   const { sessionId } = req.query;
@@ -74,5 +58,21 @@ app.post('/create-checkout-session', async (req, res) => {
 
   res.send({
     sessionId: session.id
+  });
+});
+
+//Create Stripe Product
+app.post('/create-stripe-product', async (req, res) => {
+  console.log(req.body.product);
+  const price = await stripe.prices.create({
+    unit_amount: req.body.product.price,
+    currency: 'usd',
+    product_data: {
+      name: req.body.product.name,
+    }
+  });
+
+  res.send({
+    stripeId: price.id
   });
 });

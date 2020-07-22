@@ -1,29 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
+import React from 'react';
 import CustomButton from '../custom-button/custom-button';
-
-const fetchCheckoutSession = async (items) => {
-  return fetch('/create-checkout-session', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      items
-    }),
-  }).then((res) => res.json());
-};
+import { loadCheckout } from '../../stripe/stripe.utils';
 
 const CheckoutButton = ({ items }) => {
-  const [stripe, setStripe] = useState(null);
-
-  useEffect(() => {
-    async function initStripe() {
-      const stripeHandle = await loadStripe(process.env.REACT_APP_STRIPE_API_KEY);
-      setStripe(stripeHandle);
-    }
-    initStripe();
-  }, []);
 
   const handleClick = async (event) => {
     let stripeItems = [];
@@ -34,14 +13,7 @@ const CheckoutButton = ({ items }) => {
       })
     });
 
-    const { sessionId } = await fetchCheckoutSession(stripeItems);
-    const { error } = await stripe.redirectToCheckout({
-      sessionId,
-    });
-    
-    if (error) {
-      console.log('Error creating Stripe Checkout: ', error);
-    }
+    loadCheckout(stripeItems);
   }
 
   return (

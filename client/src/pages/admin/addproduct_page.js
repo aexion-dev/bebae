@@ -1,5 +1,6 @@
 import React from 'react';
 import { addProduct } from '../../firebase/firebase.utils';
+import { createStripeProduct } from '../../stripe/stripe.utils';
 import FormInput from '../../components/form-input/form-input';
 import CustomButton from '../../components/custom-button/custom-button';
 
@@ -23,10 +24,11 @@ class AddProductPage extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const product = this.state;
-    console.log(product)
+    product.price = product.price * 100;
 
     try {
-      await addProduct(product);
+      const { stripeId } = await createStripeProduct(product);
+      await addProduct({ stripeId, ...product });
       this.setState(init_state);
     } catch (error) {
       console.log(error);
