@@ -14,6 +14,10 @@ const CollectionPageContainer = lazy(() =>
   import('./collection_page.container')
 );
 
+const ProductPageContainer = lazy(() =>
+  import('./product_page.container')
+);
+
 const ShopPage = ({ fetchProductsStart, fetchCollectionsStart, match }) => {
 
   useEffect(() => {
@@ -29,6 +33,7 @@ const ShopPage = ({ fetchProductsStart, fetchCollectionsStart, match }) => {
       <Suspense fallback={<Spinner />}>
         <Route exact path={`${match.path}`} component={CollectionsOverviewContainer} />
         <Route exact path={`${match.path}/:collectionSlug`} component={CollectionPageContainer} />
+        <Route exact path={`${match.path}/:collectionSlug/:productSlug`} component={ProductPageContainer} />
       </Suspense>
     </div>
   )

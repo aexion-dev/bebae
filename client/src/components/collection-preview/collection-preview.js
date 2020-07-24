@@ -4,7 +4,7 @@ import { selectProductsFromCollection } from '../../redux/shop/shop.selectors';
 import CollectionItem from '../collection-item/collection-item';
 import './collection-preview.scss';
 
-const CollectionPreview = ({ name, products, limit }) => {
+const CollectionPreview = ({ name, products, limit, history, match}) => {
   if(!products || products.length < 1)
     return null;
 
@@ -14,9 +14,9 @@ const CollectionPreview = ({ name, products, limit }) => {
       <div className='preview'>
         {
           products
-          ?  products.filter((item, idx) => idx < limit || limit === -1)
-              .map((item, idx) => (
-                <CollectionItem key={idx} item={item} />
+          ?  products.filter((item, idx, history, match) => idx < limit || limit === -1)
+              .map((item, idx, history, match) => (
+                <CollectionItem key={idx} item={item} history match />
               ))
           : null
         }

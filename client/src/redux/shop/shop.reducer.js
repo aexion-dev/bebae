@@ -3,7 +3,8 @@ import ShopTypes from './shop.types';
 const INITIAL_STATE = {
   collections: null,
   products: null,
-  isFetching: false,
+  loadingCollections: false,
+  loadingProducts: false,
   errorMessage: undefined
 }
 
@@ -12,35 +13,35 @@ const shopReducer = (state = INITIAL_STATE, action) => {
     case ShopTypes.FETCH_COLLECTIONS_START:
       return {
         ...state,
-        isFetching: true
+        loadingCollections: true
       }
     case ShopTypes.FETCH_COLLECTIONS_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        loadingCollections: false,
         collections: action.payload
       }
     case ShopTypes.FETCH_COLLECTIONS_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        loadingCollections: false,
         errorMessage: action.payload
       }
     case ShopTypes.FETCH_PRODUCTS_START:
       return {
         ...state,
-        isFetching: true
+        loadingProducts: true,
       }
     case ShopTypes.FETCH_PRODUCTS_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        loadingProducts: false,
         products: action.payload
       }
     case ShopTypes.FETCH_PRODUCTS_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        loadingProducts: false,
         errorMessage: action.payload
       }
     default:

@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 import EngraversGothicBT from './assets/fonts/EngraversGothicBT.otf';
 import EngraversGothicBold from './assets/fonts/EngraversGothicBold.otf';
+import AvenirBook from './assets/fonts/AvenirBook.ttf';
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -20,16 +21,28 @@ export const GlobalStyle = createGlobalStyle`
       url('${EngraversGothicBold}') format('opentype');
   }
 
+  @font-face {
+    font-family: 'Avenir Book';
+    font-style: normal;
+    font-weight: normal;
+    src:
+      url('${AvenirBook}') format('truetype');
+  }
+
   * {
     box-sizing: border-box;
   }
 
   body {
-    padding: 20px 75px;
+    padding: 35px 75px;
 
     @media screen and (max-width: 800px) {
       padding: 10px;
     }
+  }
+
+  ul, li {
+    list-style: none;
   }
 
   a {

@@ -26,6 +26,13 @@ export const selectCollection = (collectionUrlParam) => createSelector(
     : null
 )
 
+export const selectProduct = (productUrlParam) => createSelector(
+  [selectProducts],
+  products => products
+    ? Object.keys(products).map(key => products[key]).filter(product => product.routeName === productUrlParam)
+    : null
+)
+
 export const selectProductsFromCollection = (collectionId) => createSelector(
   [selectProducts],
   products => products
@@ -33,7 +40,12 @@ export const selectProductsFromCollection = (collectionId) => createSelector(
     : null
 )
 
-export const selectIsCollectionsFetching = createSelector(
+export const selectIsLoadingCollections = createSelector(
   [selectShop],
-  shop => shop.isFetching
+  shop => shop.loadingCollections
+)
+
+export const selectIsLoadingProducts = createSelector(
+  [selectShop],
+  shop => shop.loadingProducts
 )

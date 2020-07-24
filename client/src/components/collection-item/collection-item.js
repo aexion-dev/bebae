@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { addItem } from '../../redux/cart/cart.actions';
 import {
   CollectionItemContainer,
@@ -10,10 +11,11 @@ import {
   ItemButton
 } from './collection-item.styles';
 
-const CollectionItem = ({item, addItem }) => {
-  const { name, price, imageUrl } = item;
+const CollectionItem = ({item, addItem, history, match }) => {
+  const { name, price, imageUrl, routeName } = item;
   return (
-  <CollectionItemContainer>
+  <CollectionItemContainer
+    onClick={() => history.push(`${match.url}/${routeName}`)}>
     <ItemImage className='image' imageUrl={imageUrl} />
     <ItemTitle>
       <ItemName>{ name }</ItemName>
@@ -27,4 +29,4 @@ const mapDispatchToProps = (dispatch) => ({
   addItem: item => dispatch(addItem(item))
 })
 
-export default connect(null, mapDispatchToProps)(CollectionItem);
+export default connect(null, mapDispatchToProps)(withRouter(CollectionItem));
