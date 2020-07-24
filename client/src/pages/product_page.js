@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { selectProduct, selectCollection} from '../redux/shop/shop.selectors';
+import ProductImage from '../components/product-image/product-image';
 import CustomButton from '../components/custom-button/custom-button';
 import './product_page.scss';
 
@@ -10,17 +11,17 @@ const ProductPage = ({ product, collection }) => {
 
   const { name, price, imageUrl } = product[0];
 
+  //Need to convert database imageURL to array of images
+  let images = [];
+  images.push({
+    id: 0,
+    view: 'Front',
+    url: imageUrl
+  });
+
   return (
     <div className="product-page">
-      <div className="product-image">
-        <img src={imageUrl} alt="" />
-        <ul className="view-menu">
-          <li className="active"><hr />Front</li>
-          <li><hr />Left Side</li>
-          <li><hr />Right Side</li>
-          <li><hr />Back</li>
-        </ul>
-      </div>
+      <ProductImage images={images} />
       <div className="product-details">
         <span className="box-label">
           <h2 className="box-label-text">{collection.name}</h2>
