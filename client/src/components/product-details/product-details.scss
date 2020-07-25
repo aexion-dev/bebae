@@ -1,0 +1,23 @@
+.product-details {
+  width: 50%;
+  float: right;
+  max-width: 500px;
+
+  .product-name {
+    margin: 25px 0px;
+    padding: 0;
+    font-family: Engravers Gothic;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 44px;
+    text-transform: uppercase;
+  }
+
+  .product-desc {
+    font-family: Avenir Book;
+    font-weight: normal;
+    line-height: 1.55;
+    font-size: 16px;
+    margin: 0;
+  }
+}

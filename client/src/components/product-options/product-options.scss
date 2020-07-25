@@ -1,0 +1,56 @@
+.product-options {
+  vertical-align: middle;
+  margin: 25px 0px;
+
+  .group-label {
+    font-family: Engravers Gothic;
+    font-weight: normal;
+    font-size: 18px;
+    letter-spacing: 1px;
+    position: relative;
+    top: 1px;
+    height: 100%;
+    padding-right: 8px;
+  }
+
+  .option-label {
+    font-family: Engravers Gothic;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    height: 35px;
+    min-width: 35px;
+    padding: 3px 6px;
+    background-color: #ffffff;
+    border: 2px solid #ccc;
+    border-radius: 100px;
+    margin: 0px 6px;
+  }
+
+  input[type="radio"] {
+    position: fixed;
+    z-index: 9999;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    cursor: pointer;
+    margin: 0px 9px;
+  }
+
+  input[type="radio"]:hover + label {
+    border-color: #474747;
+  }
+
+  input[type="radio"]:checked + label {
+    border-color: #a22d2d;
+    color: #a22d2d;
+  }
+
+  .add-to-cart-btn {
+    margin-top: 40px;
+  }
+
+
+}
