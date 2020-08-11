@@ -97,13 +97,16 @@ export const getCurrentUser = () => {
 
 export const getCollectionsFromSnapshot = (collectionsSnapshot) => {
   const transformedCollection = collectionsSnapshot.docs.map(doc => {
-    const { name, imageUrl, slug, id } = doc.data();
+    const { name, desc, season, imageUrl, iconUrl, slug, id } = doc.data();
 
     return {
       name,
+      desc,
+      season,
       id,
       imageUrl,
-      routeName: encodeURI(slug.toLowerCase())
+      iconUrl,
+      slug: encodeURI(slug.toLowerCase())
     }
   });
 
@@ -124,7 +127,7 @@ export const getProductsFromSnapshot = (productsSnapshot) => {
       imageUrl,
       collection,
       sizes,
-      routeName: encodeURI(slug.toLowerCase()),
+      slug: encodeURI(slug.toLowerCase()),
       stripeId
     }
   });
@@ -136,7 +139,7 @@ export const getProductsFromSnapshot = (productsSnapshot) => {
 }
 
 export const addCollection = async (collection) => {
-  const collectionRef = firestore.collection('categories').doc();
+  const collectionRef = firestore.collection('collections').doc();
 
   try {
     await collectionRef.set({id: collectionRef.id, ...collection});

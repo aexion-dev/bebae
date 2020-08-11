@@ -52,10 +52,10 @@ const CollectionPreview = ({ name, products, limit, history, match}) => {
                   style={{ width: 400 }}
                   onClickCapture={handleOnItemClick}>
                   <div className="collection-item-image">
-                    <img src={item.imageUrl} alt="" onClick={() => history.push(`${match.url}/${item.routeName}`)} />
+                    <img src={item.imageUrl} alt="" onClick={() => history.push(`${match.url}/${item.slug}`)} />
                   </div>
                   <div className="collection-item-info">
-                    <h2 className="collection-item-name" onClick={() => history.push(`${match.url}/${item.routeName}`)}>{item.name}</h2>
+                    <h2 className="collection-item-name" onClick={() => history.push(`${match.url}/${item.slug}`)}>{item.name}</h2>
                     <p className="collection-item-specs">Black/Multi<br />
                       ${item.price}.00
                     </p>

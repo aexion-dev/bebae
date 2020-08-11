@@ -14,7 +14,7 @@ import ShopActionTypes from './shop.types';
 
 export function* fetchCollectionsAsync() {
   try {
-    const collectionsRef = firestore.collection('categories');
+    const collectionsRef = firestore.collection('collections');
     const snapshot = yield collectionsRef.get();
     const collections = yield call(getCollectionsFromSnapshot, snapshot);
     yield put(fetchCollectionsSuccess(collections));

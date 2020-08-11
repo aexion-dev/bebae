@@ -29,7 +29,7 @@ export const selectCollection = (collectionUrlParam) => createSelector(
 export const selectProduct = (productUrlParam) => createSelector(
   [selectProducts],
   products => products
-    ? Object.keys(products).map(key => products[key]).filter(product => product.routeName === productUrlParam)
+    ? Object.keys(products).map(key => products[key]).filter(product => product.slug === productUrlParam)
     : null
 )
 

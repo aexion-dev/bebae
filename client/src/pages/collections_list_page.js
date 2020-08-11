@@ -19,22 +19,17 @@ const CollectionsListPage = ({ collections, history, match }) => {
       {
         collections
           .filter(collection => collection.id === activeId)
-          .map(({ id, name, imageUrl, routeName }) => (
+          .map(({ id, name, desc, imageUrl, iconUrl, slug }) => (
             <div key={id} className="collection-details">
               <div className="image-container">
-                <img className="collection-image" src={collectionImage} alt="" />
-                <img className="collection-icon" src="" alt="" />
+                <img className="collection-image" src={imageUrl} alt="" />
+                <img className="collection-icon" src={iconUrl} alt="" />
               </div>
               <h2 className="collection-title">{name}</h2>
-              <p className="collection-desc">Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Sed eu tellus ex. Etiam vel
-                tincidunt libero. Phasellus vel faucibus arcu, vitae liquam leo.
-                Nunc urna quam, ultrices vitae arcu sit amet, egestas tincidunt
-                nisl. Vivamus neque justo, gravida sit amet arcu non, vehicula
-                fringilla ipsum. Proin eget tincidunt ante, ac mollis tellus.</p>
+              <p className="collection-desc">{desc}</p>
               <CustomButton
                 className="collection-btn"
-                onClick={() => history.push(`${match.url}/${routeName}`)}>Shop Collection</CustomButton>
+                onClick={() => history.push(`${match.url}/${slug}`)}>Shop Collection</CustomButton>
             </div>
         ))
       }

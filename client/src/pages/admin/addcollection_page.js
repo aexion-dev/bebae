@@ -5,6 +5,9 @@ import CustomButton from '../../components/custom-button/custom-button';
 
 const init_state = {
   name: '',
+  desc: '',
+  season: '',
+  iconUrl: '',
   imageUrl: '',
   slug:''
 };
@@ -45,14 +48,28 @@ class AddCollectionPage extends React.Component {
             name='name'
             type='text'
             value={this.state.name}
-            label='name'
+            label='Name'
             handleChange={this.handleChange}
             required />
           <FormInput
-            name='slug'
+            name='desc'
             type='text'
-            value={this.state.slug}
-            label='slug'
+            value={this.state.desc}
+            label='Desc'
+            handleChange={this.handleChange}
+            required />
+          <FormInput
+            name='season'
+            type='text'
+            value={this.state.season}
+            label='Season'
+            handleChange={this.handleChange}
+            required />
+          <FormInput
+            name='iconUrl'
+            type='url'
+            value={this.state.iconUrl}
+            label='Icon URL'
             handleChange={this.handleChange}
             required />
           <FormInput
@@ -60,6 +77,13 @@ class AddCollectionPage extends React.Component {
             type='url'
             value={this.state.imageUrl}
             label='Image URL'
+            handleChange={this.handleChange}
+            required />
+          <FormInput
+            name='slug'
+            type='text'
+            value={this.state.slug}
+            label='Slug'
             handleChange={this.handleChange}
             required />
           <div className='buttons'>
