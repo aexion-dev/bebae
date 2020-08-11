@@ -33,7 +33,6 @@ const CheckoutTable = ({ cartItems, total }) => (
     <div className='total'>
       <span>TOTAL: ${total}</span>
     </div>
-    {/*<StripeButton price={total} />*/}
     <CheckoutButton items={cartItems}/>
   </div>
 );

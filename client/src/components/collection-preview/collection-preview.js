@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectProductsFromCollection } from '../../redux/shop/shop.selectors';
-import CollectionItem from '../collection-item/collection-item';
 import Slider from "react-slick";
 import './collection-preview.scss';
 
@@ -28,8 +27,6 @@ const CollectionPreview = ({ name, products, limit, history, match}) => {
         e.stopPropagation();
         e.preventDefault();
         setSwiped(false);
-      } else {
-        console.log('clicked');
       }
     },
     [swiped],
