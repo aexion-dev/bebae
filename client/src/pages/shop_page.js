@@ -6,8 +6,8 @@ import { fetchCollectionsStart, fetchProductsStart } from '../redux/shop/shop.ac
 import Spinner from '../components/spinner/spinner';
 import './shop_page.scss';
 
-const CollectionsOverviewContainer = lazy(() =>
-  import('../components/collections-overview/collections-overview.container')
+const CollectionsListPageContainer = lazy(() =>
+  import('./collections_list_page.container')
 );
 
 const CollectionPageContainer = lazy(() =>
@@ -31,7 +31,7 @@ const ShopPage = ({ fetchProductsStart, fetchCollectionsStart, match }) => {
   return (
     <div className='shop-page'>
       <Suspense fallback={<Spinner />}>
-        <Route exact path={`${match.path}`} component={CollectionsOverviewContainer} />
+        <Route exact path={`${match.path}`} component={CollectionsListPageContainer} />
         <Route exact path={`${match.path}/:collectionSlug`} component={CollectionPageContainer} />
         <Route exact path={`${match.path}/:collectionSlug/:productSlug`} component={ProductPageContainer} />
       </Suspense>

@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCollectionsForPreview } from '../../redux/shop/shop.selectors';
-import collectionImage from '../../assets/img/collection-image-sample.png';
-import CustomButton from '../custom-button/custom-button';
-import './collections-overview.scss';
+import { selectCollectionsForPreview } from '../redux/shop/shop.selectors';
+import collectionImage from '../assets/img/collection-image-sample.png';
+import CustomButton from '../components/custom-button/custom-button';
+import './collections_list_page.scss';
 
-const CollectionsOverview = ({ collections, history, match }) => {
+const CollectionsListPage = ({ collections, history, match }) => {
   const [activeId, setActiveId] = useState(collections[0].id);
 
   const handleClick = (id) => {
@@ -59,4 +59,4 @@ const mapStateToProps = createStructuredSelector({
   collections: selectCollectionsForPreview
 })
 
-export default withRouter(connect(mapStateToProps)(CollectionsOverview));
+export default withRouter(connect(mapStateToProps)(CollectionsListPage));
