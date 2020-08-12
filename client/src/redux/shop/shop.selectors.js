@@ -22,7 +22,7 @@ export const selectCollectionsForPreview = createSelector(
 export const selectCollection = (collectionUrlParam) => createSelector(
   [selectCollections],
   collections => collections
-    ? collections[collectionUrlParam]
+    ? Object.keys(collections).map(key => collections[key]).filter(collection => collection.slug === collectionUrlParam)
     : null
 )
 

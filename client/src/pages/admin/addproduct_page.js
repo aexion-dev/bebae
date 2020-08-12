@@ -9,7 +9,18 @@ const init_state = {
   desc:'',
   price:'',
   sizes: [ 'S', 'M', 'L', 'XL' ],
-  imageUrl:'',
+  images: [
+    {
+      id: 0,
+      view: 'Front',
+      url: ''
+    },
+    {
+      id: 1,
+      view: 'Back',
+      url: ''
+    }
+  ],
   collection: '',
   slug:''
 };
@@ -37,10 +48,16 @@ class AddProductPage extends React.Component {
     this.setState(init_state);
   }
 
-
   handleChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value})
+  }
+
+  handleImageInput = (event) => {
+    const { value, id } = event.target;
+    let imageList = this.state.images.slice();
+    imageList[id].url = value;
+    this.setState({ images: imageList });
   }
 
   render() {
@@ -71,18 +88,27 @@ class AddProductPage extends React.Component {
             handleChange={this.handleChange}
             required />
           <FormInput
-            name='imageUrl'
-            type='url'
-            value={this.state.imageUrl}
-            label='ImageUrl'
-            handleChange={this.handleChange}
-            required />
-          <FormInput
             name='collection'
             type='text'
             value={this.state.collection}
             label='Collection ID'
             handleChange={this.handleChange}
+            required />
+          <FormInput
+            name='front-image'
+            type='text'
+            id='0'
+            value={this.state.images[0].url}
+            label='Front Image URL'
+            handleChange={this.handleImageInput}
+            required />
+          <FormInput
+            name='back-image'
+            type='text'
+            id='1'
+            value={this.state.images[1].url}
+            label='Back Image URL'
+            handleChange={this.handleImageInput}
             required />
           <FormInput
             name='slug'

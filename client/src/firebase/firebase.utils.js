@@ -118,13 +118,13 @@ export const getCollectionsFromSnapshot = (collectionsSnapshot) => {
 
 export const getProductsFromSnapshot = (productsSnapshot) => {
   const transformedProducts = productsSnapshot.docs.map(doc => {
-    const { name, id, price, sizes, imageUrl, collection, slug, stripeId } = doc.data();
+    const { name, id, price, sizes, images, collection, slug, stripeId } = doc.data();
 
     return {
       name,
       id,
       price,
-      imageUrl,
+      images,
       collection,
       sizes,
       slug: encodeURI(slug.toLowerCase()),

@@ -19,7 +19,7 @@ const ProductOptions = ({ product, addItem }) => {
       id: product.id,
       name: product.name,
       price: product.price,
-      imageUrl: product.imageUrl,
+      imageUrl: product.images[0].url,
       size
     });
   }

@@ -4,11 +4,11 @@ import { selectCollection } from '../redux/shop/shop.selectors';
 import CollectionPreview from '../components/collection-preview/collection-preview';
 import './collection_page.scss';
 
-const CollectionPage = ({ collections }) => {
-  if(!collections || collections.length > 1)
+const CollectionPage = ({ collection }) => {
+  if(!collection[0] || collection.length > 1)
     return null;
 
-  const { id, ...otherCollectionProps } = collections;
+  const { id, ...otherCollectionProps } = collection[0];
 
   return (
     <div className='collection-page'>
@@ -22,7 +22,7 @@ const CollectionPage = ({ collections }) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  collections: selectCollection(ownProps.match.params.collectionSlug)(state)
+  collection: selectCollection(ownProps.match.params.collectionSlug)(state)
 })
 
 export default connect(mapStateToProps)(CollectionPage);

@@ -14,7 +14,7 @@ const settings = {
   variableWidth: true
 }
 
-const CollectionPreview = ({ name, products, limit, history, match}) => {
+const CollectionPreview = ({ name, season, products, limit, history, match}) => {
   const [swiped, setSwiped] = useState(false);
 
   const handleSwiped = useCallback(() => {
@@ -38,8 +38,8 @@ const CollectionPreview = ({ name, products, limit, history, match}) => {
     return (
       <div className="collection-preview">
         <div className="collection-header">
-          <h1 className="collection-title">GARDEN COLLECTION</h1>
-          <h3 className="collection-season"><hr />FALL/WINTER '20</h3>
+          <h1 className="collection-title">{name}</h1>
+          <h3 className="collection-season"><hr />{ season }</h3>
         </div>
         <Slider onSwipe={handleSwiped} {...settings}>
           {
@@ -52,7 +52,7 @@ const CollectionPreview = ({ name, products, limit, history, match}) => {
                   style={{ width: 400 }}
                   onClickCapture={handleOnItemClick}>
                   <div className="collection-item-image">
-                    <img src={item.imageUrl} alt="" onClick={() => history.push(`${match.url}/${item.slug}`)} />
+                    <img src={item.images[0].url} alt="" onClick={() => history.push(`${match.url}/${item.slug}`)} />
                   </div>
                   <div className="collection-item-info">
                     <h2 className="collection-item-name" onClick={() => history.push(`${match.url}/${item.slug}`)}>{item.name}</h2>

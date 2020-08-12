@@ -9,20 +9,10 @@ const ProductPage = ({ product, collection }) => {
   if(!product || product.length > 1 || !collection || collection.length > 1)
     return null;
 
-  const { imageUrl } = product[0];
-
-  //Need to convert database imageURL to array of images
-  let images = [];
-  images.push({
-    id: 0,
-    view: 'Front',
-    url: imageUrl
-  });
-
   return (
     <div className="product-page">
-      <ProductImage images={images} />
-      <ProductDetails product={product[0]} collectionName={collection.name}/>
+      <ProductImage images={product[0].images} />
+      <ProductDetails product={product[0]} collectionName={collection[0].name}/>
     </div>
   )
 }

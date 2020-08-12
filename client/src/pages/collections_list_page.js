@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCollectionsForPreview } from '../redux/shop/shop.selectors';
-import collectionImage from '../assets/img/collection-image-sample.png';
 import CustomButton from '../components/custom-button/custom-button';
 import './collections_list_page.scss';
 

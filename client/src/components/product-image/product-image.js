@@ -1,30 +1,6 @@
 import React, { useState } from 'react';
 import './product-image.scss';
 
-// const testObj = [
-//   {
-//     id: 0,
-//     view: 'Front',
-//     url: 'https://i.ibb.co/xJS0T3Y/camo-vest.png',
-//   },
-//   {
-//     id: 1,
-//     view: 'Left Side',
-//     url: 'https://i.ibb.co/rKBDvJX/palm-tree-cap.png',
-//   },
-//   {
-//     id: 2,
-//     view: 'Right Side',
-//     url: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
-//   },
-//   {
-//     id: 3,
-//     view: 'Back',
-//     url: 'https://i.ibb.co/1RcFPk0/white-nike-high-tops.png',
-//   }
-// ]
-
-
 const ProductImage = ({ images }) => {
   const [activeImg, setActiveImg] = useState(0);
 
