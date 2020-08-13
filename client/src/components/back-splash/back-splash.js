@@ -21,5 +21,4 @@ const BackSplash = ({ width, color }) => {
   )
 }
 
-
 export default BackSplash;

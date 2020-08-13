@@ -4,4 +4,9 @@
   left: 0;
   z-index: -9999;
   height: 100%;
+
+  -webkit-transition: width 0.3s cubic-bezier(0,0,0.3,1);
+  -moz-transition: width 0.3s cubic-bezier(0,0,0.3,1);
+  -o-transition: width 0.3s cubic-bezier(0,0,0.3,1);
+  transition: width 0.3s cubic-bezier(0,0,0.3,1);
 }

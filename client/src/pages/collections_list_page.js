@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -7,8 +7,12 @@ import CustomButton from '../components/custom-button/custom-button';
 import BackSplash from '../components/back-splash/back-splash';
 import './collections_list_page.scss';
 
-const CollectionsListPage = ({ collections, history, match }) => {
+const CollectionsListPage = ({ collections, history, match, updateBackgroundWidth }) => {
   const [activeId, setActiveId] = useState(collections[0].id);
+
+  useEffect(() => {
+    updateBackgroundWidth('660px');
+  }, []);
 
   const handleClick = (id) => {
     setActiveId(id);
@@ -47,7 +51,6 @@ const CollectionsListPage = ({ collections, history, match }) => {
           ))
         }
       </div>
-      <BackSplash width="calc(15px + 645px)" color="black" />
     </div>
   )
 }
