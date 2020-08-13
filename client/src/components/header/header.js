@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import CartIcon from '../cart-icon/cart-icon';
@@ -6,6 +6,7 @@ import CartDropdown from '../cart-dropdown/cart-dropdown';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 import {
   HeaderContainer,
@@ -16,35 +17,39 @@ import {
 
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 
-const Header = ({ currentUser, hidden, signOutStart }) => (
-  <HeaderContainer>
-    <LogoContainer to='/'>
-      <Logo className='logo' />
-    </LogoContainer>
-    <NavContainer>
-      <StyledNavLink to='/shop'>
-        SHOP
-      </StyledNavLink>
-      <StyledNavLink to='/lookbook'>
-        LOOKBOOK
-      </StyledNavLink>
-      <StyledNavLink to='/news'>
-        NEWS
-      </StyledNavLink>
-      <StyledNavLink to='/contact'>
-        CONTACT
-      </StyledNavLink>
-      {
-        currentUser ?
-        <StyledNavLink as='div' onClick={signOutStart}>SIGN OUT</StyledNavLink>
-        :
-        <StyledNavLink to='/signin'>SIGN IN</StyledNavLink>
-      }
-      <CartIcon />
-    </NavContainer>
-    {hidden ? null : <CartDropdown />}
-  </HeaderContainer>
-);
+const Header = ({ currentUser, hidden, signOutStart }) => {
+  const { showBackground } = useContext(ThemeContext);
+
+  return (
+    <HeaderContainer>
+      <LogoContainer to='/'>
+        <Logo className='logo' fill={showBackground ? "#FFFFFF" : "#000000"} />
+      </LogoContainer>
+      <NavContainer>
+        <StyledNavLink to='/shop'>
+          SHOP
+        </StyledNavLink>
+        <StyledNavLink to='/lookbook'>
+          LOOKBOOK
+        </StyledNavLink>
+        <StyledNavLink to='/news'>
+          NEWS
+        </StyledNavLink>
+        <StyledNavLink to='/contact'>
+          CONTACT
+        </StyledNavLink>
+        {
+          currentUser ?
+          <StyledNavLink as='div' onClick={signOutStart}>SIGN OUT</StyledNavLink>
+          :
+          <StyledNavLink to='/signin'>SIGN IN</StyledNavLink>
+        }
+        <CartIcon />
+      </NavContainer>
+      {hidden ? null : <CartDropdown />}
+    </HeaderContainer>
+  );
+}
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,

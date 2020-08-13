@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCollectionsForPreview } from '../redux/shop/shop.selectors';
 import CustomButton from '../components/custom-button/custom-button';
+import BackSplash from '../components/back-splash/back-splash';
 import './collections_list_page.scss';
 
 const CollectionsListPage = ({ collections, history, match }) => {
@@ -27,6 +28,7 @@ const CollectionsListPage = ({ collections, history, match }) => {
               <h2 className="collection-title">{name}</h2>
               <p className="collection-desc">{desc}</p>
               <CustomButton
+                inverted
                 className="collection-btn"
                 onClick={() => history.push(`${match.url}/${slug}`)}>Shop Collection</CustomButton>
             </div>
@@ -45,6 +47,7 @@ const CollectionsListPage = ({ collections, history, match }) => {
           ))
         }
       </div>
+      <BackSplash width="calc(15px + 645px)" color="black" />
     </div>
   )
 }

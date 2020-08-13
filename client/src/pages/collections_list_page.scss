@@ -2,12 +2,12 @@
   height: calc(100vh - 140px);
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between;
   padding-top: 75px;
 
   .collections-list {
     height: 100%;
-    width: 50%;
+    width: 100%;
     padding-left: 30px;
     padding-bottom: 28px;
     display: grid;
@@ -39,9 +39,10 @@
 
   .collection-details {
     height: 100%;
-    min-width: 650px;
+    min-width: 700px;
     width: 700px;
     padding-right: 30px;
+    color: #FFFFFF;
 
     .image-container {
       width: 100%;
@@ -84,6 +85,12 @@
 
     .collection-btn {
       margin-top: 35px;
+      max-width: 200px;
+
+      &:hover {
+        background-color: white;
+        color: black;
+      }
     }
   }
 }

@@ -11,6 +11,7 @@ import ErrorBoundary from './components/error-boundary/error-boundary';
 import AuthRoute from './components/auth-route/auth-route';
 
 import { GlobalStyle } from './global.styles';
+import ThemeContextProvider from './contexts/ThemeContext';
 
 const HomePage = lazy(() => import('./pages/home_page'));
 const SignInPage = lazy(() => import('./pages/signin_page'));
@@ -30,22 +31,24 @@ const App = ({ checkUserSession, isLoading, currentUser }) => {
 
   return (
     <div>
-      <GlobalStyle />
-        <Header />
-        <Switch>
-          <ErrorBoundary>
-            <Suspense fallback={<Spinner />}>
-              <Route exact path='/' component={HomePage}/>
-              <Route path='/shop' component={ShopPage}/>
-              <Route exact path='/checkout' component={CheckoutPage}/>
-              <Route exact path='/signin' render={
-                () => currentUser ? (<Redirect to='/'/>) : (<SignInPage />)
-              }/>
-              <AuthRoute exact path='/add-collection' component={AddCollectionPage}/>
-              <AuthRoute exact path='/add-product' component={AddProductPage}/>
-            </Suspense>
-          </ErrorBoundary>
-        </Switch>
+      <ThemeContextProvider>
+        <GlobalStyle />
+          <Header />
+          <Switch>
+            <ErrorBoundary>
+              <Suspense fallback={<Spinner />}>
+                <Route exact path='/' component={HomePage}/>
+                <Route path='/shop' component={ShopPage}/>
+                <Route exact path='/checkout' component={CheckoutPage}/>
+                <Route exact path='/signin' render={
+                  () => currentUser ? (<Redirect to='/'/>) : (<SignInPage />)
+                }/>
+                <AuthRoute exact path='/add-collection' component={AddCollectionPage}/>
+                <AuthRoute exact path='/add-product' component={AddProductPage}/>
+              </Suspense>
+            </ErrorBoundary>
+          </Switch>
+      </ThemeContextProvider>
     </div>
   );
 }
