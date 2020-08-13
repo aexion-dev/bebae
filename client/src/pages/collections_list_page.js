@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCollectionsForPreview } from '../redux/shop/shop.selectors';
 import CustomButton from '../components/custom-button/custom-button';
-import BackSplash from '../components/back-splash/back-splash';
 import './collections_list_page.scss';
 
 const CollectionsListPage = ({ collections, history, match, updateBackgroundWidth }) => {
@@ -12,7 +11,7 @@ const CollectionsListPage = ({ collections, history, match, updateBackgroundWidt
 
   useEffect(() => {
     updateBackgroundWidth('660px');
-  }, []);
+  }, [updateBackgroundWidth]);
 
   const handleClick = (id) => {
     setActiveId(id);

@@ -6,9 +6,10 @@ import ProductDetails from '../components/product-details/product-details';
 import './product_page.scss';
 
 const ProductPage = ({ product, collection, updateBackgroundWidth }) => {
+
   useEffect(() => {
     updateBackgroundWidth('calc(75px + (100vw - 150px) * 0.25)');
-  }, []);
+  }, [updateBackgroundWidth]);
 
   if(!product || product.length > 1 || !collection || collection.length > 1)
     return null;

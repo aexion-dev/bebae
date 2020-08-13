@@ -10,8 +10,8 @@ const BackSplash = ({ width, color }) => {
 
     return () => {
       toggleBackground(false);
-    };
-  }, []);
+    }
+  }, [toggleBackground]);
 
   return (
     <div
