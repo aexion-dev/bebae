@@ -7,7 +7,7 @@ import './collection_page.scss';
 
 const CollectionPage = ({ collection, updateBackgroundWidth }) => {
   useEffect(() => {
-    updateBackgroundWidth('calc(75px + calc(calc(100vw - 150px) * .18))');
+    updateBackgroundWidth('calc(75px + calc(calc(100vw - 150px) * .15))');
   }, []);
 
   if(!collection[0] || collection.length > 1)
