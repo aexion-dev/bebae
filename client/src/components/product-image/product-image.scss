@@ -1,13 +1,13 @@
 .product-image {
   height: 100%;
   width: 50%;
+  max-height: 1000px;
   float: left;
   display: flex;
-  justify-content: flex-end;
-  padding-right: 100px;
+  justify-content: center;
 
   img {
-    height: 80%;
+    height: 90%;
     display: none;
     opacity: 0;
 
@@ -33,17 +33,28 @@
       font-size: 16px;
       letter-spacing: 1px;
       text-transform: uppercase;
+      color: #a5a5a5;
 
       hr {
         height: 1px;
         width: 40px;
         margin-left: 0;
         margin-right: 15px;
+        background-color: #a5a5a5;
+        border: none;
+
+        -webkit-transition: width 0.3s cubic-bezier(0,0,0.3,1);
+        -moz-transition: width 0.3s cubic-bezier(0,0,0.3,1);
+        -o-transition: width 0.3s cubic-bezier(0,0,0.3,1);
+        transition: width 0.3s cubic-bezier(0,0,0.3,1);
       }
 
       &.active {
+        color: #FFFFFF;
+
         hr {
           width: 100px;
+          background-color: #FFFFFF;
         }
       }
     }

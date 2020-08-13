@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectProduct, selectCollection} from '../redux/shop/shop.selectors';
 import ProductImage from '../components/product-image/product-image';
 import ProductDetails from '../components/product-details/product-details';
 import './product_page.scss';
 
-const ProductPage = ({ product, collection }) => {
+const ProductPage = ({ product, collection, updateBackgroundWidth }) => {
+  useEffect(() => {
+    updateBackgroundWidth('calc(75px + (100vw - 150px) * 0.25)');
+  }, []);
+
   if(!product || product.length > 1 || !collection || collection.length > 1)
     return null;
 
