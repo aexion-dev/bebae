@@ -4,17 +4,27 @@ import {
   CartItemContainer,
   CartItemImage,
   CartItemDetailsContainer,
+  CartItemTopInfo,
   CartItemName,
+  CartItemSize,
+  CartItemBottomInfo,
+  CartItemQuantity,
   CartItemPrice
 } from './cart-item.styles';
 
 
-const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
+const CartItem = ({ item: { imageUrl, price, name, quantity, size } }) => (
   <CartItemContainer>
     <CartItemImage src={imageUrl} alt='item' />
     <CartItemDetailsContainer>
-      <CartItemName>{name}</CartItemName>
-      <CartItemPrice>{quantity} x {formatPrice(price)}</CartItemPrice>
+      <CartItemTopInfo>
+        <CartItemName>{name}</CartItemName>
+        <CartItemSize>Size: {size}</CartItemSize>
+      </CartItemTopInfo>
+      <CartItemBottomInfo>
+        <CartItemQuantity>QTY: {quantity}</CartItemQuantity>
+        <CartItemPrice>{formatPrice(price)}</CartItemPrice>
+      </CartItemBottomInfo>
     </CartItemDetailsContainer>
   </CartItemContainer>
 )
