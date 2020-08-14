@@ -60,6 +60,10 @@ export const CartItemsContainer = styled.div`
 export const CartEmptyMessage = styled.span`
   font-size: 18px;
   margin: 50px auto;
+  font-family: Avenir Book;
+  font-weight: normal;
+  line-height: 1.55;
+  font-size: 16px;
 `;
 
 export const CartDropdownFooter = styled.div`
@@ -68,6 +72,7 @@ export const CartDropdownFooter = styled.div`
 
 export const CartDropdownTotalContainer = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   font-family: Avenir Book;
   font-weight: normal;
@@ -78,7 +83,10 @@ export const CartDropdownTotalContainer = styled.div`
 `;
 
 export const CartDropdownTotalLabel = styled.p`
+  font-family: Engravers Gothic;
   font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 1px;
   margin: 0;
 `;
 

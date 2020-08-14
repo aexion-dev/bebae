@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addItem } from '../../redux/cart/cart.actions';
+import { createStructuredSelector } from 'reselect';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { addItem, toggleCartHidden } from '../../redux/cart/cart.actions';
 import CustomButton from '../custom-button/custom-button';
 import './product-options.scss';
 
-const ProductOptions = ({ product, addItem }) => {
+const ProductOptions = ({ product, addItem, toggleCartHidden, hidden }) => {
   const [selectedOptions, setSelectedOptions] = useState({
     size: 'S'
   });
@@ -15,13 +17,17 @@ const ProductOptions = ({ product, addItem }) => {
     event.preventDefault();
     const { size } = selectedOptions;
 
-    addItem({
+    await addItem({
       id: product.id,
       name: product.name,
       price: product.price,
       imageUrl: product.images[0].url,
       size
     });
+
+    if(hidden) {
+      await toggleCartHidden();
+    }
   }
 
   const handleChange = (event) => {
@@ -56,7 +62,12 @@ const ProductOptions = ({ product, addItem }) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: item => dispatch(addItem(item))
-})
+  addItem: item => dispatch(addItem(item)),
+  toggleCartHidden: () => dispatch(toggleCartHidden())
+});
 
-export default connect(null, mapDispatchToProps)(ProductOptions);
+const mapStateToProps = createStructuredSelector({
+  hidden: selectCartHidden
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductOptions);
