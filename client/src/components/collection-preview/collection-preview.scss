@@ -4,20 +4,35 @@
 
   .collection-header {
     margin-left: 15%;
+    height: auto;
 
     .collection-title {
-      font-family: Engravers Gothic;
-      font-weight: bold;
-      font-size: 48px;
-      line-height: 44px;
-      text-transform: uppercase;
       margin: 0;
-      margin-bottom: 25px;
-      padding-left: 60px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-left: 30px;
+
+      .collection-icon {
+        height: 70px;
+        width: 70px;
+        margin-right: 10px;
+      }
+
+      h1 {
+        font-family: Engravers Gothic;
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 44px;
+        text-transform: uppercase;
+        margin: 0;
+        margin-bottom: 4px;
+      }
     }
 
     .collection-season {
       display: inline-flex;
+      margin: 15px 0px;
       font-family: Engravers Gothic;
       font-weight: normal;
       font-size: 20px;
@@ -33,6 +48,27 @@
         background-color: black;
         border: none;
       }
+    }
+  }
+
+  .back-btn-container {
+    position: absolute;
+    top: 95px;
+    height: calc(100vh - 140px);
+    padding-top: 75px;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+
+    a {
+      cursor: pointer;
+      font-family: Engravers Gothic;
+      font-weight: bold;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.25;
+      color: #FFFFFF;
     }
   }
 }

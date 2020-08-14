@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { selectProductsFromCollection } from '../../redux/shop/shop.selectors';
 import Slider from "react-slick";
 import './collection-preview.scss';
@@ -14,7 +14,7 @@ const settings = {
   variableWidth: true
 }
 
-const CollectionPreview = ({ name, season, products, limit, history, match}) => {
+const CollectionPreview = ({ name, season, iconUrl, products, limit, history, match}) => {
   const [swiped, setSwiped] = useState(false);
 
   const handleSwiped = useCallback(() => {
@@ -38,7 +38,10 @@ const CollectionPreview = ({ name, season, products, limit, history, match}) => 
     return (
       <div className="collection-preview">
         <div className="collection-header">
-          <h1 className="collection-title">{name}</h1>
+          <div className="collection-title">
+            <img className="collection-icon" src={iconUrl} alt="" />
+            <h1>{name}</h1>
+          </div>
           <h3 className="collection-season"><hr />{ season }</h3>
         </div>
         <Slider onSwipe={handleSwiped} {...settings}>
@@ -65,6 +68,9 @@ const CollectionPreview = ({ name, season, products, limit, history, match}) => 
             : null
           }
         </Slider>
+        <div className="back-btn-container">
+          <Link to='/shop'>Back</Link>
+        </div>
       </div>
     )
 }
