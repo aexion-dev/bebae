@@ -17,6 +17,9 @@ const CheckoutTable = ({ cartItems, total }) => (
         <span>Description</span>
       </div>
       <div className='header-block'>
+        <span>Size</span>
+      </div>
+      <div className='header-block'>
         <span>Quantity</span>
       </div>
       <div className='header-block'>
@@ -27,8 +30,8 @@ const CheckoutTable = ({ cartItems, total }) => (
       </div>
     </div>
     {
-      cartItems.map(cartItem =>
-        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+      cartItems.map((cartItem, idx) =>
+        <CheckoutItem key={idx} cartItem={cartItem} />
       )
     }
     <div className='total'>

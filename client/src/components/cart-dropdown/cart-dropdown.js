@@ -28,8 +28,8 @@ const CartDropdown = ({ cartItems, total, hidden, history, dispatch }) => (
     </CartDropdownHeader>
     <CartItemsContainer>
       {cartItems.length ? (
-        cartItems.map(cartItem => (
-          <CartItem key={cartItem.id} item={cartItem} />
+        cartItems.map((cartItem, idx) => (
+          <CartItem key={idx} item={cartItem} />
         ))
       ) : (
         <CartEmptyMessage>Your cart is empty</CartEmptyMessage>
