@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { selectProductsFromCollection } from '../../redux/shop/shop.selectors';
 import Slider from "react-slick";
+import { formatPrice } from '../../utils/price';
 import './collection-preview.scss';
 
 const settings = {
@@ -60,7 +61,7 @@ const CollectionPreview = ({ name, season, iconUrl, products, limit, history, ma
                   <div className="collection-item-info">
                     <h2 className="collection-item-name" onClick={() => history.push(`${match.url}/${item.slug}`)}>{item.name}</h2>
                     <p className="collection-item-specs">Black/Multi<br />
-                      ${item.price}.00
+                      {formatPrice(item.price)}
                     </p>
                   </div>
                 </div>

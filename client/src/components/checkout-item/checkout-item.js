@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addItem, removeItem, clearItemFromCart } from '../../redux/cart/cart.actions';
+import { formatPrice } from '../../utils/price';
 import './checkout-item.scss';
 
 
@@ -17,7 +18,7 @@ const CheckoutItem = ({ cartItem, addItem, removeItem, clearItem }) => {
         <span className='value'>{quantity}</span>
         <div className='arrow' onClick={() => addItem(cartItem)}>&#10095;</div>
       </span>
-      <span className='price'>{price}</span>
+      <span className='price'>{formatPrice(price)}</span>
       <span className='remove-button' onClick={() => clearItem(cartItem)}>&#10005;</span>
     </div>
   );

@@ -35,7 +35,6 @@ class AddProductPage extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const product = this.state;
-    product.price = product.price * 100;
 
     try {
       const { stripeId } = await createStripeProduct(product);
@@ -44,7 +43,6 @@ class AddProductPage extends React.Component {
     } catch (error) {
       console.log(error);
     }
-
     this.setState(init_state);
   }
 

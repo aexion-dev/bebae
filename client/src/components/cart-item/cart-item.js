@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatPrice } from '../../utils/price';
 import {
   CartItemContainer,
   CartItemImage,
@@ -13,7 +14,7 @@ const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
     <CartItemImage src={imageUrl} alt='item' />
     <CartItemDetailsContainer>
       <CartItemName>{name}</CartItemName>
-      <CartItemPrice>{quantity} x ${price}</CartItemPrice>
+      <CartItemPrice>{quantity} x {formatPrice(price)}</CartItemPrice>
     </CartItemDetailsContainer>
   </CartItemContainer>
 )
