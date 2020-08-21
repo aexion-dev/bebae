@@ -22,6 +22,7 @@ const ProductOptions = ({ product, addItem, toggleCartHidden, hidden }) => {
       name: product.name,
       price: product.price,
       imageUrl: product.images[0].url,
+      stripeId: product.stripeId,
       size
     });
 

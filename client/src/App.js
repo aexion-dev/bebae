@@ -37,7 +37,7 @@ const App = ({ checkUserSession, isLoading, currentUser }) => {
           <Switch>
             <ErrorBoundary>
               <Suspense fallback={<Spinner />}>
-                <Route exact path='/' component={HomePage}/>
+                <Route exact path='/' render={() => <Redirect to='/shop'/>}/>
                 <Route path='/shop' component={ShopPage}/>
                 <Route exact path='/checkout' component={CheckoutPage}/>
                 <Route exact path='/signin' render={
