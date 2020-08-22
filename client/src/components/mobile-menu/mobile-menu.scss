@@ -29,13 +29,35 @@
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-  height: 24px;
-  width: 24px;
+  width: 24px !important;
+  height: 24px !important;
+  top: 1.25rem !important;
+  right: 25px !important;
+  z-index: 10;
+
+  @media screen and (min-width:768px) {
+    top: 48px !important;
+    right: 50px !important;
+  }
+}
+
+.bm-cross-button > span {
+  position: relative !important;
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0 !important;
+  right: 0 !important;
 }
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #bdc3c7;
+  height: 100% !important;
+  top: 50%;
+  left: 50%;
+  margin: -50% 0 0;
+  width: 2px !important;
+  background: #fff;
 }
 
 /*
@@ -45,26 +67,27 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu-wrap {
   position: fixed;
   height: 100%;
+  width: 100% !important;
   top: 0px;
   transition: transform 0.3s 0ms !important;
+
+  @media screen and (min-width:768px) {
+    width: 50% !important;
+  }
 }
 
 /* General sidebar styles */
 .bm-menu {
-  background: #FFFFFF;
-  padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
+  background: #1A1A1A;
 }
 
 /* Wrapper for item list */
 .bm-item-list {
   color: #b8b7ad;
-  padding: 0.8em;
 }
 
 /* Individual item */
 .bm-item {
-  display: inline-block;
 }
 
 /* Styling of overlay */
