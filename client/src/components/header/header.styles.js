@@ -7,18 +7,17 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  @media screen and (max-width:800px) {
-
-  }
 `;
 
 export const LogoContainer = styled(Link)`
-  width: 110px;
+  width: 96px;
 
-  @media screen and (max-width:800px) {
-    width: 50px;
-    padding: 0;
+  .logo {
+    vertical-align: middle;
+  }
+
+  @media screen and (min-width:768px) {
+    width: 110px;
   }
 `;
 
@@ -27,8 +26,14 @@ export const NavContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+`;
 
-  @media screen and (max-width:800px) {
+export const NavMenu = styled.div`
+  display: none;
+
+  @media screen and (min-width:1024px) {
+    display: flex;
+    margin-right: 30px;
   }
 `;
 
@@ -38,16 +43,19 @@ export const StyledNavLink = styled(NavLink)`
   font-weight: bold;
   font-size: 18px;
   letter-spacing: 1px;
-  padding: 0px 15px;
+  padding: 0px 10px;
   cursor: pointer;
 
+  @media screen and (min-width:768px) {
+    padding: 0px 15px;
+  }
+
   &.active {
-    
+
   }
 `;
 
 export const AccountIcon = styled(AccountIconSVG)`
   width: 20px;
   height: 20px;
-  margin-left: 30px;
 `

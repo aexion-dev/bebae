@@ -38,8 +38,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     padding: 35px 75px;
 
-    @media screen and (max-width: 800px) {
-      padding: 10px;
+    @media screen and (max-width: 768px) {
+      padding: .75rem 1.25rem
     }
   }
 

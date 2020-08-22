@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import CartIcon from '../cart-icon/cart-icon';
 import CartDropdown from '../cart-dropdown/cart-dropdown';
+import MobileMenu from '../mobile-menu/mobile-menu';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
@@ -12,6 +13,7 @@ import {
   HeaderContainer,
   LogoContainer,
   NavContainer,
+  NavMenu,
   StyledNavLink,
   AccountIcon
 } from './header.styles';
@@ -27,18 +29,20 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
         <Logo className='logo' fill={showBackground ? "#FFFFFF" : "#000000"} />
       </LogoContainer>
       <NavContainer>
-        <StyledNavLink to='/shop'>
-          SHOP
-        </StyledNavLink>
-        <StyledNavLink to='/lookbook'>
-          LOOKBOOK
-        </StyledNavLink>
-        <StyledNavLink to='/news'>
-          NEWS
-        </StyledNavLink>
-        <StyledNavLink to='/contact'>
-          CONTACT
-        </StyledNavLink>
+        <NavMenu>
+          <StyledNavLink to='/shop'>
+            SHOP
+          </StyledNavLink>
+          <StyledNavLink to='/lookbook'>
+            LOOKBOOK
+          </StyledNavLink>
+          <StyledNavLink to='/news'>
+            NEWS
+          </StyledNavLink>
+          <StyledNavLink to='/contact'>
+            CONTACT
+          </StyledNavLink>
+        </NavMenu>
         {
           currentUser ?
           <StyledNavLink as='div' onClick={signOutStart}><AccountIcon /></StyledNavLink>
@@ -46,6 +50,7 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
           <StyledNavLink to='/signin'><AccountIcon /></StyledNavLink>
         }
         <CartIcon />
+        <MobileMenu />
       </NavContainer>
       <CartDropdown />
     </HeaderContainer>
