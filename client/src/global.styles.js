@@ -36,11 +36,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    padding: 35px 75px;
-
-    @media screen and (max-width: 768px) {
-      padding: .75rem 1.5rem
-    }
+    height: 100%;
+    position: relative;
   }
 
   ul, li {

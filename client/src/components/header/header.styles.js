@@ -1,26 +1,39 @@
 import styled from 'styled-components';
 import { NavLink, Link } from 'react-router-dom';
 import { ReactComponent as AccountIconSVG } from '../../assets/user-avatar.svg';
+import { ReactComponent as LogoSVG } from '../../assets/logo.svg';
 
 export const HeaderContainer = styled.div`
+  padding: 35px 75px;
+
+  @media screen and (max-width: 1024px) {
+    padding-right: ${props => props.$showBackground ? "35px" : "75px"};
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: .75rem 1.5rem
+  }
+`;
+
+export const HeaderBar = styled.div`
   height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-`;
+`
 
 export const LogoContainer = styled(Link)`
   width: 96px;
-
-  .logo {
-    vertical-align: middle;
-  }
 
   @media screen and (min-width:768px) {
     width: 110px;
   }
 `;
+
+export const Logo = styled(LogoSVG)`
+  vertical-align: middle;
+  fill: ${props => props.$showBackground ? "#FFFFFF" : "#000000"};
+`
 
 export const NavContainer = styled.div`
   height: 100%;
@@ -59,4 +72,9 @@ export const StyledNavLink = styled(NavLink)`
 export const AccountIcon = styled(AccountIconSVG)`
   width: 20px;
   height: 20px;
+  fill: #000000;
+
+  @media screen and (max-width: 1024px) {
+    fill: ${props => props.$showBackground ? "#FFFFFF" : "#000000"};
+  }
 `

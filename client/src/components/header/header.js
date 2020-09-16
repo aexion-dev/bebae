@@ -11,48 +11,50 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 import {
   HeaderContainer,
+  HeaderBar,
   LogoContainer,
+  Logo,
   NavContainer,
   NavMenu,
   StyledNavLink,
   AccountIcon
 } from './header.styles';
 
-import { ReactComponent as Logo } from '../../assets/logo.svg';
-
 const Header = ({ currentUser, hidden, signOutStart }) => {
   const { showBackground } = useContext(ThemeContext);
 
   return (
-    <HeaderContainer>
-      <LogoContainer to='/'>
-        <Logo className='logo' fill={showBackground ? "#FFFFFF" : "#000000"} />
-      </LogoContainer>
-      <NavContainer>
-        <NavMenu>
-          <StyledNavLink to='/shop'>
-            SHOP
-          </StyledNavLink>
-          <StyledNavLink to='/lookbook'>
-            LOOKBOOK
-          </StyledNavLink>
-          <StyledNavLink to='/news'>
-            NEWS
-          </StyledNavLink>
-          <StyledNavLink to='/contact'>
-            CONTACT
-          </StyledNavLink>
-        </NavMenu>
-        {
-          currentUser ?
-          <StyledNavLink as='div' onClick={signOutStart}><AccountIcon /></StyledNavLink>
-          :
-          <StyledNavLink to='/signin'><AccountIcon /></StyledNavLink>
-        }
-        <CartIcon />
-        <MobileMenu />
-      </NavContainer>
-      <CartDropdown />
+    <HeaderContainer $showBackground={showBackground}>
+      <HeaderBar>
+        <LogoContainer to='/'>
+          <Logo $showBackground={showBackground} />
+        </LogoContainer>
+        <NavContainer>
+          <NavMenu>
+            <StyledNavLink to='/shop'>
+              SHOP
+            </StyledNavLink>
+            <StyledNavLink to='/lookbook'>
+              LOOKBOOK
+            </StyledNavLink>
+            <StyledNavLink to='/news'>
+              NEWS
+            </StyledNavLink>
+            <StyledNavLink to='/contact'>
+              CONTACT
+            </StyledNavLink>
+          </NavMenu>
+          {
+            currentUser ?
+            <StyledNavLink as='div' onClick={signOutStart}><AccountIcon $showBackground={showBackground}/></StyledNavLink>
+            :
+            <StyledNavLink to='/signin'><AccountIcon $showBackground={showBackground}/></StyledNavLink>
+          }
+          <CartIcon />
+          <MobileMenu />
+        </NavContainer>
+        <CartDropdown />
+      </HeaderBar>
     </HeaderContainer>
   );
 }
