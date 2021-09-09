@@ -7,7 +7,7 @@ export const HeaderContainer = styled.div`
   padding: 35px 75px;
 
   @media screen and (max-width: 1024px) {
-    padding-right: ${props => props.$showBackground ? "35px" : "75px"};
+    padding-right: 35px;
   }
 
   @media screen and (max-width: 768px) {
@@ -75,6 +75,8 @@ export const AccountIcon = styled(AccountIconSVG)`
   fill: #000000;
 
   @media screen and (max-width: 1024px) {
-    fill: ${props => props.$showBackground ? "#FFFFFF" : "#000000"};
+    ${props => props.$currentPageTheme === 'collection-list' && `
+        fill: #FFFFFF;
+    `}
   }
 `

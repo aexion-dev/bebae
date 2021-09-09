@@ -40,7 +40,7 @@ const ShopPage = ({ fetchProductsStart, fetchCollectionsStart, match }) => {
         <Route exact path={`${match.path}`} render={() => (<CollectionsListPageContainer updateBackgroundWidth={updateBackgroundWidth} />)} />
         <Route exact path={`${match.path}/:collectionSlug`} render={(props) => (<CollectionPageContainer {...props} updateBackgroundWidth={updateBackgroundWidth} />)} />
         <Route exact path={`${match.path}/:collectionSlug/:productSlug`} render={(props) => (<ProductPageContainer {...props} updateBackgroundWidth={updateBackgroundWidth} />)} />
-        <BackSplash width={backgroundWidth} color="black" />
+        {backgroundWidth ? <BackSplash width={backgroundWidth} color="black" /> : ""}
       </Suspense>
     </div>
   )

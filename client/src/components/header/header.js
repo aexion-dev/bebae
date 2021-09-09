@@ -21,10 +21,10 @@ import {
 } from './header.styles';
 
 const Header = ({ currentUser, hidden, signOutStart }) => {
-  const { showBackground } = useContext(ThemeContext);
+  const { showBackground, currentPageTheme } = useContext(ThemeContext);
 
   return (
-    <HeaderContainer $showBackground={showBackground}>
+    <HeaderContainer $showBackground={showBackground} $currentPageTheme={currentPageTheme}>
       <HeaderBar>
         <LogoContainer to='/'>
           <Logo $showBackground={showBackground} />
@@ -46,9 +46,9 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
           </NavMenu>
           {
             currentUser ?
-            <StyledNavLink as='div' onClick={signOutStart}><AccountIcon $showBackground={showBackground}/></StyledNavLink>
+            <StyledNavLink as='div' onClick={signOutStart}><AccountIcon $showBackground={showBackground} $currentPageTheme={currentPageTheme}/></StyledNavLink>
             :
-            <StyledNavLink to='/signin'><AccountIcon $showBackground={showBackground}/></StyledNavLink>
+            <StyledNavLink to='/signin'><AccountIcon $showBackground={showBackground} $currentPageTheme={currentPageTheme}/></StyledNavLink>
           }
           <CartIcon />
           <MobileMenu />

@@ -12,11 +12,11 @@ import {
 
 
 const CartIcon = ({ toggleCartHidden, itemCount }) => {
-  const { showBackground } = useContext(ThemeContext);
+  const { showBackground, currentPageTheme } = useContext(ThemeContext);
 
   return (
-    <CartIconContainer onClick={toggleCartHidden} $showBackground={showBackground} >
-      <ShoppingIcon $showBackground={showBackground} />
+    <CartIconContainer onClick={toggleCartHidden} $showBackground={showBackground} $currentPageTheme={currentPageTheme} >
+      <ShoppingIcon $showBackground={showBackground} $currentPageTheme={currentPageTheme} />
       <CartIconCount>{itemCount}</CartIconCount>
     </CartIconContainer>
   );

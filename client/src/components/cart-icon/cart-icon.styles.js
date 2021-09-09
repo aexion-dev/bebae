@@ -5,7 +5,7 @@ export const CartIconContainer = styled.div`
   width: 31px;
   height: 45px;
   margin: 0px 10px;
-  margin-right: ${props => props.$showBackground ? "40px" : "10px"};
+  margin-right: 30px;
   position: relative;
   display: flex;
   align-items: center;
@@ -14,7 +14,7 @@ export const CartIconContainer = styled.div`
 
   @media screen and (min-width:768px) {
     margin: 0px 15px;
-    margin-right: ${props => props.$showBackground ? "80px" : "10px"};
+    margin-right: 40px;
   }
 
   @media screen and (min-width:1024px) {
@@ -28,7 +28,9 @@ export const ShoppingIcon = styled(ShoppingIconSVG)`
   fill: #000000;
 
   @media screen and (max-width: 1024px) {
-    fill: ${props => props.$showBackground ? "#FFFFFF" : "#000000"};
+    ${props => props.$currentPageTheme === 'collection-list' && `
+        fill: #FFFFFF;
+    `}
   }
 `
 

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { ThemeContext } from '../contexts/ThemeContext';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -10,6 +11,7 @@ import './collections_list_page.scss';
 const CollectionsListPage = ({ collections, history, match, updateBackgroundWidth }) => {
   const [activeId, setActiveId] = useState(collections[0].id);
 
+  const { changePageTheme } = useContext(ThemeContext);
   const size = useWindowSize();
   let bgWidth = 0;
 
@@ -26,6 +28,14 @@ const CollectionsListPage = ({ collections, history, match, updateBackgroundWidt
     default:
       bgWidth = 615;
   }
+
+  useEffect(() => {
+    changePageTheme("collection-list");
+
+    return () => {
+      changePageTheme("default");
+    }
+  }, [changePageTheme]);
 
   useEffect(() => {
     updateBackgroundWidth(bgWidth);

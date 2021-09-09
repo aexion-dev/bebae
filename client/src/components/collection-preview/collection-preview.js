@@ -4,18 +4,49 @@ import { withRouter, Link } from 'react-router-dom';
 import { selectProductsFromCollection } from '../../redux/shop/shop.selectors';
 import Slider from "react-slick";
 import { formatPrice } from '../../utils/price';
+import CustomButton from '../custom-button/custom-button';
+import LeftArrowSVG from '../../assets/arrow-left.svg';
+import RightArrowSVG from '../../assets/arrow-right.svg';
 import './collection-preview.scss';
 
-const settings = {
-  className: "collection-slider",
-  arrows: false,
-  infinite: false,
-  slidesToShow: 3.5,
-  swipeToSlide: true,
-  variableWidth: true
+function NextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div>
+      <div className={className} onClick={onClick}>
+        <img alt="Next" src={RightArrowSVG} />
+      </div>
+      <div className="back-btn-container">
+        <Link to='/shop'>
+        <span className="nav-arrow nav-arrow-left"></span>
+        <span className="link-text">Back</span>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function PrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div className={className} onClick={onClick}>
+      <img alt="Previous" src={LeftArrowSVG} />
+    </div>
+  );
 }
 
 const CollectionPreview = ({ name, season, iconUrl, products, limit, history, match}) => {
+  const settings = {
+    className: "collection-slider",
+    arrows: true,
+    infinite: false,
+    swipeToSlide: true,
+    variableWidth: true,
+    focusOnSelect: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />
+  }
+
   const [swiped, setSwiped] = useState(false);
 
   const handleSwiped = useCallback(() => {
@@ -43,7 +74,7 @@ const CollectionPreview = ({ name, season, iconUrl, products, limit, history, ma
             <img className="collection-icon" src={iconUrl} alt="" />
             <h1>{name}</h1>
           </div>
-          <h3 className="collection-season"><hr />{ season }</h3>
+          <h3 className="collection-season"><span>{ season }</span></h3>
         </div>
         <Slider onSwipe={handleSwiped} {...settings}>
           {
@@ -53,25 +84,25 @@ const CollectionPreview = ({ name, season, iconUrl, products, limit, history, ma
                 <div
                   key={idx}
                   className="collection-item"
-                  style={{ width: 400 }}
+                  item-slug={item.slug}
                   onClickCapture={handleOnItemClick}>
                   <div className="collection-item-image">
-                    <img src={item.images[0].url} alt="" onClick={() => history.push(`${match.url}/${item.slug}`)} />
+                    <img src={item.images[0].url} alt="" />
                   </div>
                   <div className="collection-item-info">
                     <h2 className="collection-item-name" onClick={() => history.push(`${match.url}/${item.slug}`)}>{item.name}</h2>
                     <p className="collection-item-specs">Black/Multi<br />
                       {formatPrice(item.price)}
                     </p>
+                    <CustomButton
+                      className="collection-btn"
+                      onClick={() => history.push(`${match.url}/${item.slug}`)}>Shop Now</CustomButton>
                   </div>
                 </div>
               ))
             : null
           }
         </Slider>
-        <div className="back-btn-container">
-          <Link to='/shop'>Back</Link>
-        </div>
       </div>
     )
 }
